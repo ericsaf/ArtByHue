@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5FKzu6gFuEeMtn7T7WgC0gAAAAACAAAAAAAQZgAAAAEAACAAAABTH+8oCEvoIyixOOiH8IUCghkwT4DrWJMjm/JQYTdjOAAAAAAOgAAAAAIAACAAAACaVPgJCYinxMa9DmsAcReY0i1W8p5beGT9EufQHfYkqIAAAADsenjZyvv12xyqs0Sn8+h9YlKL4CIMpLSvkwSY8RU6VvsGQEhbeYFt9D+RvGanFbalbv6/1dgY8KCXTZ/xSvlW+c6HO0u+ZJlyuFmI6aBKlCMjxHgC1PxiVLA6QZGzgQHyqekdyoRRsmKsfJk4qiLInVmw1jL2AsFcTigb+nXvGUAAAADuZEwcTzk5DufFMSvUmb0M8QEasp3Na0gYNI/qcn6r4ykfEeYF4kI8ObDGEofmQM+5/4exfgnk25G3vwrAZYaB</EncryptedPassword>
+    <_NewBackgroundProfile>False</_NewBackgroundProfile>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AzureConnection">
+      <Value>Data Source=tcp:artbyhuedbserver.database.windows.net,1433;Initial Catalog=ArtByHue_db;User Id=ABHMainAdmin@artbyhuedbserver;Password=9ISJjB1szyNMXW4C</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="LocalConnection">
+      <Value>Data Source=tcp:artbyhuedbserver.database.windows.net,1433;Initial Catalog=ArtByHue_db;User Id=ABHMainAdmin@artbyhuedbserver;Password=9ISJjB1szyNMXW4C</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

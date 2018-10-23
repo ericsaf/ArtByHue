@@ -1,0 +1,29 @@
+﻿@model WebApp.ViewModels.SearchViewModel
+@{
+    var pageCount = (Model.FoundCount + 30 - 1) / 30;
+}
+@if (Model.FoundCount > 30)
+{
+    <nav>
+        <ul class="pagination pagination-lg">
+            @if (Model.CurrentPage != 1)
+            {
+                <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-controller="ArtPrints" asp-action="ColorOnly" asp-route-color="@Model.SearchColor" asp-route-colorname="@Model.ColorName" asp-route-page="@(Model.CurrentPage - 1)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                </li>
+            }
+            @for (int i = 1; i <= pageCount; i++)
+            {
+                <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                    <a class="page-link" asp-controller="ArtPrints" asp-action="ColorOnly" asp-route-color="@Model.SearchColor" asp-route-colorname="@Model.ColorName" asp-route-page="@i" aria-label="Page @i">@i</a>
+                </li>
+            }
+            @if (Model.CurrentPage != pageCount)
+            {
+                <li class="page-item @(Model.CurrentPage == pageCount ? "disabled" : "")">
+                    <a class="page-link" asp-controller="ArtPrints" asp-action="ColorOnly" asp-route-color="@Model.SearchColor" asp-route-colorname="@Model.ColorName" asp-route-page="@(Model.CurrentPage + 1)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

@@ -1,0 +1,370 @@
+@model ProductViewModel
+@using WebApp.Services.Utilities
+@using Microsoft.AspNetCore.Mvc;
+
+@{
+    var title = "Art Print " + Model.Product.Title.Trim();
+    var artistDesc = "";
+    if (Model.Product.Artist != null && !String.IsNullOrEmpty(Model.Product.Artist.Name))
+    {
+        title += " by " + Model.Product.Artist.Name.Trim();
+        artistDesc = Model.Product.Artist.Name.Trim();
+    }
+
+    ViewData["Title"] = title;
+    ViewData["PageTitle"] = title;
+    ViewData["Type"] = "product";
+
+    var desc = String.Format("Available at {0} is this art print{1} titled {2}. {3}",
+        Model.Product.Supplier.Name,
+        !String.IsNullOrEmpty(artistDesc) ? " by " + artistDesc : "",
+        Model.Product.Title.Trim(),
+        Model.Product.Description?.Trim());
+
+    ViewData["PageDesc"] = desc;
+    var images = new List<string>();
+    images.Add(Model.Product.Images[0].SourceURLLarge);
+    ViewData["Images"] = images;
+
+    var thisUrl = String.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path);
+    var thisImageURL = Html.UrlEncoder.Encode(Model.Product.Images[0].SourceURLLarge);
+
+    var twitterUrl = String.Format("https://twitter.com/intent/tweet?text={0}&url={1}&via=artbyhue",
+                Html.UrlEncoder.Encode("Check out this nice art print"), thisUrl);
+
+    var pinDesc = Html.UrlEncoder.Encode(String.Format("Art Print titled {0} found at Art By Hue", Model.Product.Title));
+    var pinURL = String.Format("https://www.pinterest.com/pin/create/button/?url={0}&media={1}&description={2}", thisUrl, thisImageURL, pinDesc);
+
+    var gplusUrl = String.Format("https://plus.google.com/share?url={0}", thisUrl);
+
+    var pinView = Context.Request.Query.ContainsKey("view") ? true : false;
+    var a = "";
+
+}
+<style>
+    .paint-manf {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+        .paint-manf img {
+            margin-bottom: 15px;
+            max-height: 90px;
+        }
+
+        .paint-manf label {
+            margin-bottom: 0.1rem;
+            line-height: 1rem;
+        }
+
+    .price-after {
+        font-size: 1.5rem;
+    }
+</style>
+<div class="row search-header ease-background">
+    <div class="col-xs-12 ease-background" id="results-header" @(String.IsNullOrEmpty(Model.SearchColor) ? "" : "style=background-color:#" + Model.SearchColor + ";")>
+        @*<h5>Art Prints Matching @Model.ColorName @(String.IsNullOrEmpty(Model.SearchKeywords) ? "" : "'" + @Model.SearchKeywords + "'")</h5>*@
+        <button type="button" id="search-button" class="btn btn-default-outline hoverable waves-effect" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">New Search</button>
+
+
+        @Html.Partial("_SearchForm", new WebApp.ViewModels.SearchViewModel())
+    </div>
+</div>
+<div class="row m-t-2">
+
+    <!--First column-->
+    <div class="col-xs-12 col-md-6 col-xl-5 flex-center m-b-2 main-img-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <img id="main-img" class="img-fluid animated m-x-auto" src="@Model.Product.Images[0].SourceURLLarge" title="@Model.Product.Title by @Model.Product.Artist.Name" />
+            </div>
+            <div class="col-xs-12 text-xs-center m-t-2">
+                <h5 style="display: inline;"> Share:</h5>
+                <a type="button" class="btn btn-fb" data-link="@thisUrl"><i class="fa fa-facebook"></i></a>
+                <a type="button" data-pin-do="buttonPin" data-pin-custom="true" class="btn btn-pin" href="@pinURL"><i class="fa fa-pinterest"></i></a>
+                <a type="button" href="@twitterUrl" class="btn btn-tw"><i class="fa fa-twitter"></i></a>
+                <a type="button" class="btn btn-gplus" href="@gplusUrl" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
+
+            </div>
+            @if (!String.IsNullOrEmpty(Model.Product.Keywords))
+            {
+                <div class="col-xs-12 animated fadeIn text-xs-center hidden-sm-down">
+                    <br />
+                    <h4 class="h4-responsive">Related Searches</h4>
+                    @foreach (var keyword in Model.Product.Keywords.Split(','))
+                    {
+                        <a href="/@Slug.Create(true, keyword.Trim())" class="btn btn-sm primary-rounded-outline waves-effect">@keyword.Trim()</a>
+                    }
+                </div>
+            }
+            <div class="col-xs-12 text-xs-center m-t-2 p-a-2">
+                <a target="_blank" href="http://shareasale.com/r.cfm?b=893855&amp;u=1212845&amp;m=53284&amp;urllink=&amp;afftrack="><img src="http://static.shareasale.com/image/53284/300x250_SASv2.jpg" border="0" /></a>
+            </div>
+        </div>
+    </div>
+    <!--/.First column-->
+    <!--Second column-->
+    <div class="col-md-6 col-xl-7 text-xs-center text-md-left">
+        <!--Title-->
+        <h3 id="product-title" class="text-uppercase">@Model.Product.Title</h3>
+        @if (!String.IsNullOrEmpty(Model.Product.Artist.Name))
+            {
+            <p id="artist-name">
+                By <a href="@Model.Product.Artist.SlugURL" id="artist-link">@Model.Product.Artist.Name<small> (view more)</small></a>
+                @if (Model.Product.IndependentArtist)
+                {
+                    <i class="fa fa-child indie-artist" aria-hidden="true"></i>
+                }
+            </p>
+        }
+        <hr>
+        <!--Price-->
+        <div class="price text-xs-center text-md-left">
+            <p><span class="price-after green-text">base price <strong>$@Model.Product.Price</strong><sup>*</sup></span></p>
+            <p><a id="buy-now" href="@Model.Product.AffiliateURL" class="btn btn-lg btn-primary" target="_blank" rel="nofollow" title="Purchase @Model.Product.Title at @Model.Product.Supplier.Name">Price Options</a> at<img id="modal-store-logo" src="@Model.Product.Supplier.Logo" /></p>
+            <p><small class="text-muted animated fadeIn"><sup>*</sup>Options including size, material, framing etc.affect the price</small></p>
+        </div>
+
+        <hr>
+        @if (!String.IsNullOrEmpty(Model.Product.Description))
+            {
+            <p id="description" class="animated fadeIn">@Model.Product.Description</p>
+            <hr />
+        }
+        @if (Model.MatchingPaints?.Count > 0)
+            {
+            <h3 class="h3-responsive text-xs-center">Matching Paints</h3>
+            <div class="text-xs-center">(tap/click on a color chip to search by that color)</div>
+            <div class="row">
+                <div class="col-xs-6 col-md-3 paint-manf">
+                    <div class="col-xs-12 flex-center">
+                        <img src="/images/behr-logo.png" />
+                    </div>
+                    @if (Model.MatchingPaints.Where(x => x.name.Contains("Behr")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("Behr")))
+                        {
+                            <div class="clearfix"></div>
+                            <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Art Prints Matching @color.name">
+                                <label>@color.name.Replace(" ( Behr )", "")</label>
+                                <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                            None
+                        </div>
+
+                    }
+                </div>
+
+                <div class="col-xs-6 col-md-3 paint-manf">
+                    <div class="col-xs-12 flex-center">
+                        <img src="/images/benjamin-moore-logo.png" />
+                    </div>
+                    @if (Model.MatchingPaints.Where(x => x.name.Contains("B. Moore")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("B. Moore")))
+                        {
+                            <div class="clearfix"></div>
+                            <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Art Prints Matching @color.name">
+                                <label>@color.name.Replace(" ( B. Moore )", "")</label>
+                                <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                            None
+                        </div>
+
+                    }
+                </div>
+
+                <div class="col-xs-6 col-md-3 paint-manf">
+                    <div class="col-xs-12 flex-center">
+                        <img src="~/images/sherwin-williams-logo.jpg" />
+                    </div>
+                    @if (Model.MatchingPaints.Where(x => x.name.Contains("S. Williams")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("S. Williams")))
+                        {
+                            <div class="clearfix"></div>
+                            <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Click to view more art prints matching @color.name">
+                                <label>@color.name.Replace(" ( S. Williams )", "")</label>
+                                <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                            None
+                        </div>
+
+                    }
+                </div>
+
+                <div class="col-xs-6 col-md-3 paint-manf">
+                    <div class="col-xs-12 flex-center">
+                        <img src="~/images/valspar-logo.png" />
+                    </div>
+                    @if (Model.MatchingPaints.Where(x => x.name.Contains("Valspar")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("Valspar")))
+                        {
+                            <div class="clearfix"></div>
+                            <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Click to view more art prints matching @color.name">
+                                <label>@color.name.Replace(" ( Valspar )", "")</label>
+                                <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                            None
+                        </div>
+
+                    }
+                </div>
+
+            </div>
+        }
+
+        @if (!String.IsNullOrEmpty(Model.Product.Keywords))
+        {
+            <div class="col-xs-12 animated fadeIn text-xs-center hidden-md-up">
+                <br />
+                <h4 class="h4-responsive">Related Searches</h4>
+                @foreach (var keyword in Model.Product.Keywords.Split(','))
+                {
+                    <a href="/@Slug.Create(true, keyword.Trim())" class="btn btn-sm primary-rounded-outline waves-effect">@keyword.Trim()</a>
+                }
+            </div>
+        }
+
+    </div>
+    <!--/.Second column-->
+</div>
+
+@if (pinView)
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <img id="main-img" class="img-fluid animated m-x-auto" src="@Model.Product.Images[0].SourceURLLarge" title="@Model.Product.Title by @Model.Product.Artist.Name" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @if (Model.MatchingPaints?.Count > 0)
+            {
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 paint-manf">
+                        <div class="col-xs-12 flex-center">
+                            <img src="/images/behr-logo.png" />
+                        </div>
+                        @if (Model.MatchingPaints.Where(x => x.name.Contains("Behr")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("Behr")))
+                        {
+                                <div class="clearfix"></div>
+                                <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Art Prints Matching @color.name">
+                                    <label>@color.name.Replace(" ( Behr )", "")</label>
+                                    <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                                None
+                            </div>
+
+                        }
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 paint-manf">
+                        <div class="col-xs-12 flex-center">
+                            <img src="/images/benjamin-moore-logo.png" />
+                        </div>
+                        @if (Model.MatchingPaints.Where(x => x.name.Contains("B. Moore")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("B. Moore")))
+                        {
+                                <div class="clearfix"></div>
+                                <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Art Prints Matching @color.name">
+                                    <label>@color.name.Replace(" ( B. Moore )", "")</label>
+                                    <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                                None
+                            </div>
+
+                        }
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 paint-manf">
+                        <div class="col-xs-12 flex-center">
+                            <img src="~/images/sherwin-williams-logo.jpg" />
+                        </div>
+                        @if (Model.MatchingPaints.Where(x => x.name.Contains("S. Williams")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("S. Williams")))
+                        {
+                                <div class="clearfix"></div>
+                                <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Click to view more art prints matching @color.name">
+                                    <label>@color.name.Replace(" ( S. Williams )", "")</label>
+                                    <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                                None
+                            </div>
+
+                        }
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 paint-manf">
+                        <div class="col-xs-12 flex-center">
+                            <img src="~/images/valspar-logo.png" />
+                        </div>
+                        @if (Model.MatchingPaints.Where(x => x.name.Contains("Valspar")).Count() > 0)
+                    {
+                        foreach (var color in Model.MatchingPaints.Where(x => x.name.Contains("Valspar")))
+                        {
+                                <div class="clearfix"></div>
+                                <a href="/color/@color.hex.Replace("#", "")/@Slug.Create(true, color.name)" title="Click to view more art prints matching @color.name">
+                                    <label>@color.name.Replace(" ( Valspar )", "")</label>
+                                    <div class="col-xs-12" style="height: 50px; margin-bottom: 10px; background-color: @color.hex;"></div>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-xs-12 flex-center" style="height: 50px; margin-bottom: 10px;">
+                                None
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+}
+<div class="p-a-3">
+    <a data-sumome-discover-grid></a>
+</div>

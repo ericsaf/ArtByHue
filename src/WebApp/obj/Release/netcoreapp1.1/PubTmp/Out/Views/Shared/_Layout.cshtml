@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] | Art By Hue</title>
+    <meta name="description" content="@ViewData["PageDesc"]">
+    @if (ViewData["NoIndex"] != null && (bool)ViewData["NoIndex"])
+    {
+        <meta name="robots" content="noindex">
+    }
+    @if (ViewBag.CanonicalURL != null)
+    {
+        <link rel="canonical" href="@ViewBag.CanonicalURL" />
+    }
+    @section tags
+    {
+        @RenderSection("tags", required: false)
+    }
+
+    <meta property="fb:app_id" content="227109114316823" />
+    <meta property="og:type" content="@(ViewData["Type"] == null ? "website" : ViewData["Type"])" />
+    <meta property="og:site_name" content="Art By Hue" />
+    <meta property="og:title" content="@(ViewData["PageTitle"] == null ? "Art By Hue" : ViewData["PageTitle"])" />
+    @if (ViewBag.CanonicalURL != null)
+    {
+        <meta property="og:url" content="@ViewBag.CanonicalURL" />
+    }
+    else
+    {
+        <meta property="og:url" content="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+    }
+    @if (ViewData["Images"] != null)
+    {
+        var images = (List<string>)ViewData["Images"];
+        foreach (var i in images)
+        {
+            <meta property="og:image" content="@i" />
+        }
+    }
+    else
+    {
+        <meta property="og:image" content="@Context.Request.Scheme://@Context.Request.Host/images/artbyhuesamples.jpg" />
+    }
+    <meta property="og:description"
+          content="@(ViewData["PageDesc"] == null ? "Easily match beautiful art to your decor colors." : ViewData["PageDesc"])" />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@@artbyhue">
+    <meta name="twitter:creator" content="@@artbyhue">
+    <meta name="twitter:title" content="@(ViewData["Title"] == null ? "Art By Hue" : ViewData["Title"])">
+    <meta name="twitter:description" content="@(ViewData["PageDesc"] == null ? "Easily match beautiful art to your decor colors." : ViewData["PageDesc"])">
+
+    <meta name="p:domain_verify" content="e59c20df62b5a327a9401fb97cb87273" />
+    <link href="https://plus.google.com/115504668668676120459" rel="publisher" />
+    <script type="text/javascript" async defer
+            src="https://apis.google.com/js/platform.js?publisherid=115504668668676120459">
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-2565257726091314",
+        enable_page_level_ads: true
+      });
+    </script>
+    <link rel="alternate" href="http://www.artbyhue.com" hreflang="en-us" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/material-bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/material-bootstrap/css/mdb.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link href="~/lib/chromoselector/chromoselector.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous"
+              asp-fallback-href="~/lib/material-bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/lib/material-bootstrap/css/mdb.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    @*<script src="//load.sumome.com/" data-sumo-site-id="eb102cfda74cfa81ce46307e8442ece3cb4c98905cff907cd0cd98eb6aa21dfe" async="async"></script>*@
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+        document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '101393723661656');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=101393723661656&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- DO NOT MODIFY -->
+    <!-- End Facebook Pixel Code -->
+    @*@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)*@
+</head>
+<body>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '227109114316823',
+                xfbml: true,
+                version: 'v2.7'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    @Html.Partial("_Nav", true)
+
+    <main>
+
+        <!--Main layout-->
+        <div id="content-container" class="container-fluid">
+
+            @RenderBody()
+        </div>
+    </main>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/material-bootstrap/js/tether.js"></script>
+        <script src="~/lib/material-bootstrap/js/bootstrap.js"></script>
+        <script src="~/lib/chromoselector/chromoselector.min.js"></script>
+        <script src="~/lib/autocomplete/autocomplete.js"></script>
+        <script src="~/lib/handlebars/handlebars.js"></script>
+        <script src="~/lib/material-bootstrap/js/mdb.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.js"
+                asp-fallback-src="~/lib/material-bootstrap/js/tether.min.js"
+                asp-fallback-test="Tether">
+
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"
+                asp-fallback-src="~/lib/matrial-bootstrap/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/lib/chromoselector/chromoselector.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"
+                asp-fallback-src="~/lib/handlebars/handlebars.js"
+                asp-fallback-test="Handlebars">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"
+                asp-fallback-src="~/lib/autocomplete/autocomplete.js"
+                asp-fallback-test="Bloodhound">
+        </script>
+        <script src="~/lib/material-bootstrap/js/mdb.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    @*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
+
+    @RenderSection("scripts", required: false)
+    <script>
+        resize();
+
+        function resize() {
+            var topPad = $('.search-header').height();
+            var searchWidth = $('#slide-out').css('left') == '0px' ? $(window).width() - 240 : $(window).width();
+            $('#content-container').css('padding-top', topPad);
+            $('.search-header').css('position', 'fixed').css('margin-top', topPad * -1).css('width', searchWidth);
+            //$('#search-button').css('margin-right', '0');
+            $('#results-header').addClass('text-xs-right');
+            $('#hamburger').css('position', 'fixed').css('left', '14px').css('top', '9px').css('padding', 0);
+
+        }
+
+        window.onresize = resize;
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-72742084-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

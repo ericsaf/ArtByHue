@@ -1,0 +1,29 @@
+﻿@model List<Category>
+
+@{
+    Layout = "~/views/shared/_layout.cshtml";
+
+    ViewData["PageTitle"] = "Art By Hue - Popular Art Print Categories";
+    ViewData["PageDesc"] = "Listing of the most common art print categories found at Art By Hue";
+    ViewData["Title"] = "Popular Art Print Categories";
+}
+@Html.Partial("_SearchHeader")
+
+@foreach (var cat in Model)
+{
+    <a asp-controller="ArtPrints" asp-action="Category" asp-route-name="@WebApp.Services.Utilities.Slug.Create(true, cat.Name)">@cat.Name</a><br />
+}
+
+
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $('#menu li').removeClass('active');
+            $('#categories').addClass('active');
+            $('.search-btn').hide();
+        });
+    </script>
+
+}

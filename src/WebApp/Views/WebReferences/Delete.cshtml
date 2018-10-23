@@ -1,0 +1,77 @@
+@model WebApp.Models.WebReference
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>WebReference</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EntryDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HatTipLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HatTipLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HatTipName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HatTipName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HatTipSourceLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HatTipSourceLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HatTipSourceName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HatTipSourceName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SourceLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceViaText)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SourceViaText)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

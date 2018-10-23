@@ -1,0 +1,12 @@
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\bin\Debug\netcoreapp1.0\WebApp.deps.json
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\bin\Debug\netcoreapp1.0\WebApp.runtimeconfig.json
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\bin\Debug\netcoreapp1.0\WebApp.runtimeconfig.dev.json
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\bin\Debug\netcoreapp1.0\WebApp.dll
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\bin\Debug\netcoreapp1.0\WebApp.pdb
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\obj\Debug\netcoreapp1.0\WebApp.csprojResolveAssemblyReference.cache
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\obj\Debug\netcoreapp1.0\WebApp.csproj.CoreCompileInputs.cache
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\obj\Debug\netcoreapp1.0\UserSecretsAssemblyInfo.cs
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\obj\Debug\netcoreapp1.0\WebApp.AssemblyInfoInputs.cache
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\obj\Debug\netcoreapp1.0\WebApp.AssemblyInfo.cs
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\obj\Debug\netcoreapp1.0\WebApp.dll
+C:\VSProjects\ArtByHue\WebApp\src\WebApp\obj\Debug\netcoreapp1.0\WebApp.pdb

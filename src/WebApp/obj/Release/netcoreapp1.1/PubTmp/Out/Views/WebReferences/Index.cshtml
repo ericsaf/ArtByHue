@@ -1,0 +1,84 @@
+@model IEnumerable<WebApp.Models.WebReference>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HatTipLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HatTipName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HatTipSourceLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HatTipSourceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SourceLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SourceViaText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HatTipLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HatTipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HatTipSourceLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HatTipSourceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceViaText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WebReferenceID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WebReferenceID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WebReferenceID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,90 @@
+@model WebApp.ViewModels.SearchViewModel
+
+@{
+    var rangeEnd = Model.FoundCount < Model.CurrentPage * 30 ? Model.FoundCount : Model.CurrentPage * 30;
+    var rangeStart = ((Model.CurrentPage - 1) * 30) + 1;
+
+    var thisUrl = String.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path);
+
+    var thisImageURL = Model.Results.Count() > 0 ? Html.UrlEncoder.Encode(Model.Results[0].LargeImageURL) : "";
+
+    var twitterUrl = String.Format("https://twitter.com/intent/tweet?text={0}&url={1}&via=artbyhue",
+                Html.UrlEncoder.Encode("Check out these art prints"), thisUrl);
+
+    var pinDesc = "";
+
+    if (!String.IsNullOrEmpty(ViewBag.IsArtist?.ToString()))
+    {
+        pinDesc = Html.UrlEncoder.Encode(String.Format("See art prints by {0} at {1}", Model.SearchKeywords, thisUrl));
+    }
+    else if (!String.IsNullOrEmpty(Model.SearchColor) && String.IsNullOrEmpty(Model.SearchKeywords))
+    {
+        pinDesc = Html.UrlEncoder.Encode(String.Format("See art prints matching {0} at {1}", Model.ColorName, thisUrl));
+    }
+    else if (String.IsNullOrEmpty(Model.SearchColor) && !String.IsNullOrEmpty(Model.SearchKeywords))
+    {
+        pinDesc = Html.UrlEncoder.Encode(String.Format("See art prints matching '{0}' at {1}", Model.SearchKeywords, thisUrl));
+    }
+    else
+    {
+        pinDesc = Html.UrlEncoder.Encode(String.Format("See art prints matching {0} and '{1}' at {2}", Model.ColorName, Model.SearchKeywords, thisUrl));
+    }
+
+    var pinURL = String.Format("https://www.pinterest.com/pin/create/button/?url={0}&media={1}&description={2}", thisUrl, thisImageURL, pinDesc);
+
+    var gplusUrl = String.Format("https://plus.google.com/share?url={0}", thisUrl);
+}
+
+<div class="row search-header ease-background">
+    <div class="col-xs-12 ease-background" id="results-header" @(String.IsNullOrEmpty(Model.SearchColor) ? "" : "style=background-color:#" + Model.SearchColor + ";")>
+        @*<h5>Art Prints Matching @Model.ColorName @(String.IsNullOrEmpty(Model.SearchKeywords) ? "" : "'" + @Model.SearchKeywords + "'")</h5>*@
+        <button type="button" id="search-button" class="btn btn-default-outline hoverable waves-effect" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"><i class="fa fa-search left"></i>New Search</button>
+        @Html.Partial("_SearchForm", Model)
+    </div>
+</div>
+<div id="top-section" class="row">
+    <div class="col-xs-12 text-xs-center">
+        @if (!String.IsNullOrEmpty(ViewBag.IsArtist?.ToString()))
+        {
+            <h2>@Model.SearchKeywords</h2>
+        }
+        else if (!String.IsNullOrEmpty(Model.SearchColor) && String.IsNullOrEmpty(Model.SearchKeywords))
+        {
+            <h2>@Model.ColorName</h2>
+        }
+        else if (String.IsNullOrEmpty(Model.SearchColor) && !String.IsNullOrEmpty(Model.SearchKeywords))
+        {
+            <h2>@Model.SearchKeywords</h2>
+        }
+        else
+        {
+            <h5>Searched For:</h5>
+            <dl class="dl-horizontal">
+                <dt class="col-xs-6 text-xs-right">Color:</dt>
+                <dd class="col-xs-6 text-xs-left p-l-0">@Model.ColorName</dd>
+                <dt class="col-xs-6 text-xs-right">Term(s):</dt>
+                <dd class="col-xs-6 text-xs-left p-l-0">@Model.SearchKeywords</dd>
+            </dl>
+
+        }
+        @if (Model.FoundCount > 0)
+        {
+            <h5>Showing items @rangeStart  - @rangeEnd of @Model.FoundCount</h5>
+            <div class="col-xs-12 text-xs-center">
+                <h5 style="display: inline;"> Share:</h5>
+                <a type="button" class="btn btn-fb" data-link="@thisUrl"><i class="fa fa-facebook"></i></a>
+                <a type="button" data-pin-do="buttonPin" data-pin-custom="true" class="btn btn-pin" href="@pinURL"><i class="fa fa-pinterest"></i></a>
+                <a type="button" href="@twitterUrl" class="btn btn-tw"><i class="fa fa-twitter"></i></a>
+                <a type="button" class="btn btn-gplus" href="@gplusUrl" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
+
+            </div>
+        }
+        else
+        {
+            <h5 class="bg-danger p-a-2">No Matches Found</h5>
+
+        }
+
+
+    </div>
+</div>

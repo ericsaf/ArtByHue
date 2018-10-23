@@ -1,0 +1,157 @@
+﻿@model List<WebReference>
+@{
+    Layout = "~/views/shared/_Layout.cshtml";
+
+    ViewData["PageTitle"] = "Art in decor inspiration from around the web | Art By Hue";
+    ViewData["PageDesc"] = "A colection of examples of art use in design and decor from around the web.";
+    ViewData["Title"] = "Decor Inspiration";
+
+    var similarProds = ViewBag.SimilarProducts == null ? new List<ProductSearchResult>() : (List<ProductSearchResult>)ViewBag.SimilarProducts;
+
+    var images = new List<string>();
+
+    foreach (var r in Model)
+    {
+        foreach (var i in r.Pictures)
+        {
+            images.Add(i.ImageURL);
+        }
+    }
+
+    ViewData["Images"] = images;
+    ViewBag.IsInspiration = true;
+
+    var thisUrl = String.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path);
+    var thisImageURL = "";
+
+    var twitterUrl = String.Format("https://twitter.com/intent/tweet?text={0}&url={1}",
+                Html.UrlEncoder.Encode("Art By Hue - Artful Interiors Inspiration"), "http://www.artbyhue.com/articles/decor-inspiration");
+
+    var pinDesc = Html.UrlEncoder.Encode("Art By Hue - Artful Interiors Inspiration");
+    var pinURL = String.Format("https://www.pinterest.com/pin/create/button/?url={0}&media={1}&description={2}", "http://www.artbyhue.com/articles/decor-inspiration", thisImageURL, pinDesc);
+
+    var gplusUrl = String.Format("https://plus.google.com/share?url={0}", "http://www.artbyhue.com/articles/decor-inspiration");
+}
+<style>
+    .about-title {
+        background-image: url('../images/header-bg3.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+        overflow: hidden;
+        background-color: #808080;
+        height: 20vmax;
+    }
+
+        .about-title h1 {
+            color: #f5f5f5;
+            font-weight: 300;
+            font-size: 3.3vmax;
+            line-height: 4.2vmax;
+            padding: 30px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+</style>
+@Html.Partial("_SearchHeader")
+<cache expires-sliding="@TimeSpan.FromMinutes(30)">
+    <div id="mdb-lightbox-ui"></div>
+    <div class="row p-a-3">
+        <div class="col-xs-12 flex-center about-title ">
+            <h1>Recent examples of art in decor and interior design from around the web</h1>
+
+        </div>
+    </div>
+    <div class="row p-l-3 p-r-3">
+        <div class="col-xs-12">
+            <p>ArtByHue.com creates no claim or credit for images featured on our site unless otherwise noted. All visual content is copyrighted to it's respectful owners and we make every effort to link back to original content whenever possible.</p>
+        </div>
+    </div>
+    <div class="row p-a-3">
+        @foreach (var r in Model)
+        {
+            <div class="col-xs-12 m-b-3">
+                <h3 class="h3-responsive">
+                    <span class="text-uppercase">@r.SourceViaText</span> - <a href="@r.SourceLink">@r.Title</a>
+                </h3>
+                <div class="clearfix"></div>
+                @if (!String.IsNullOrEmpty(r.HatTipLink) && !String.IsNullOrEmpty(r.HatTipName))
+                {
+                    <a href="@r.HatTipLink">Hat Tip: @r.HatTipName</a>
+                    @if (!String.IsNullOrEmpty(r.HatTipSourceLink) && !String.IsNullOrEmpty(r.HatTipSourceName))
+                    {
+                        <span>at <a href="@r.HatTipSourceLink">@r.HatTipSourceName</a></span>
+                    }
+                }
+                @if (!String.IsNullOrEmpty(r.Comments))
+                {
+                    <div class="clearfix"></div>
+                    <p>@r.Comments</p>
+                }
+                <div class="mdb-lightbox">
+                    @foreach (var i in r.Pictures)
+                {
+                        <figure class="@(r.Pictures.Count == 1 ? "col-md-12" : "col-md-6")">
+                            <!--Large image-->
+                            <a href="@i.ImageURL" class="img-thumb">
+                                <!-- Thumbnail-->
+                                <img src="@i.ImageURL" class="img-fluid" alt="@i.AltText">
+                                <div class="clearfix"></div>
+                            </a>
+                            @if (!String.IsNullOrEmpty(i.PhotoCreditURL))
+                            {
+                                <span>Photo Credit: <a href="@i.PhotoCreditURL">@i.PhotoCreditName</a></span>
+                            }
+                        </figure>
+                    }
+                </div>
+            </div>
+            <div class="m-b-3 p-b-3">
+                @{ await Html.RenderPartialAsync("_Products", similarProds.Where(x => r.SimilarProducts.Select(y => y.ProductID).Contains(x.ProductID)).ToList());
+                }
+            </div>
+
+                    }
+    </div>
+    <div class="clearfix"></div>
+    @Html.Partial("_Ads")
+
+    <div class="p-a-3">
+        <a data-sumome-discover-grid></a>
+    </div>
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn btn-floating btn-large red">
+            <i class="fa fa-share-alt"></i>
+        </a>
+
+        <ul>
+            <li><a class="btn btn-floating btn-social btn-fb"  data-link="@thisUrl"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="btn btn-floating btn-social btn-pin" href="@pinURL" data-pin-do="buttonPin" data-pin-custom="true"><i class="fa fa-pinterest"></i></a></li>
+            <li><a class="btn btn-floating btn-social btn-tw" href="@twitterUrl"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="btn btn-floating btn-social btn-gplus" href="@gplusUrl" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+    </div>
+
+</cache>
+@section scripts
+{
+    <script>
+        $('.img-thumb img').on('load', function () {
+            var img = this;
+            //or however you get a handle to the IMG
+            var width = img.naturalWidth;
+            var height = img.naturalHeight;
+            $(this).parent().attr('data-size', width + 'x' + height)
+        });
+
+        $(function () {
+            $('#menu li').removeClass('active');
+            //$('#about').addClass('active');
+            $('.search-btn').hide();
+
+
+
+            $("#mdb-lightbox-ui").load("/lib/material-bootstrap/mdb-addons/mdb-lightbox-ui.html");
+        });
+    </script>
+
+}

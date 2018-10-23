@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/views/shared/_layout.cshtml";
+
+    ViewData["PageTitle"] = "Art By Hue Privacy Policy";
+    ViewData["PageDesc"] = "";
+    ViewData["Title"] = "Privacy Policy";
+}
+@Html.Partial("_SearchHeader")
+
+
+
+<div id="privacy" class="m-t-3 p-a-3">
+    <h1 class="m-b-3">Privacy Policy</h1>
+    <div id="section1">
+        <p> Protecting your private information is our priority. This Statement of Privacy applies to the http:///www.artbyhue.com and Art By Hue and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to Art By Hue include http:///www.artbyhue.com. The Art By Hue website is a news and information site. By using the Art By Hue website, you consent to the data practices described in this statement. </p>
+        <p> &nbsp; </p>
+    </div>
+    <div id="section4">
+        <p> <b>Collection of your Personal Information</b> </p>
+        <p> We do not collect personally identifiable information from our users. We may gather personal or non-personal information in the future. </p>
+        <p> Information about your computer hardware and software may be automatically collected by Art By Hue. This information can include: your IP address, browser type, domain names, access times and referring website addresses. This information is used for the operation of the service, to maintain quality of the service, and to provide general statistics regarding use of the Art By Hue website. </p>
+        <p> Art By Hue encourages you to review the privacy statements of websites you choose to link to from Art By Hue so that you can understand how those websites collect, use and share your information. Art By Hue is not responsible for the privacy statements or other content on websites outside of the Art By Hue website. </p>
+        <p> &nbsp; </p>
+    </div>
+    <div id="section7">
+        <p> <b>Security of your Personal Information</b> </p>
+        <p> Art By Hue secures your personal information from unauthorized access, use or disclosure. </p>
+        <p> &nbsp; </p>
+    </div>
+    <div id="section10"></div>
+    <div id="section11">
+        <p> <b>Children Under Thirteen</b> </p>
+        <p> Art By Hue does not knowingly collect personally identifiable information from children under the age of thirteen. If you are under the age of thirteen, you must ask your parent or guardian for permission to use this website. </p>
+        <p> &nbsp; </p>
+    </div>
+    <div id="section13">
+        <p> <b>Opt-Out &amp; Unsubscribe</b> </p>
+        <p> We respect your privacy and give you an opportunity to opt-out of receiving announcements of certain information. Users may opt-out of receiving any or all communications from Art By Hue by contacting us here: </p>
+        @*<p> - Web page: _________________ </p>*@
+        <p> - Email: info@artbyhue.com </p>
+        @*<p> - Phone: _________________ </p>*@
+        <p> &nbsp; </p>
+    </div>
+    <div id="section14">
+        <p> <b>Changes to this Statement</b> </p>
+        <p> Art By Hue will occasionally update this Statement of Privacy to reflect company and customer feedback. Art By Hue encourages you to periodically review this Statement to be informed of how Art By Hue is protecting your information. </p>
+        <p> &nbsp; </p>
+    </div>
+    <div id="section15">
+        <p> <b>Contact Information</b> </p>
+        <p> Art By Hue welcomes your questions or comments regarding this Statement of Privacy. If you believe that Art By Hue has not adhered to this Statement, please contact Art By Hue at: </p>
+        <p> &nbsp; </p>
+        <p> Art By Hue </p>
+        <p> 723 Stonecrest Dr </p>
+        <p> Woodstock, Virginia 22664 </p>
+        <p> &nbsp; </p>
+        <p> Email Address: </p>
+        <p> info@artbyhue.com </p>
+        <p> &nbsp; </p>
+        <p> Effective as of December 28, 2015 </p>
+        <p> &nbsp; </p>
+    </div>
+
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $('#menu li').removeClass('active');
+            $('#privacy').addClass('active');
+            $('.search-btn').hide();
+        });
+    </script>
+
+}

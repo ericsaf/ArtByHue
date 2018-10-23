@@ -1,0 +1,543 @@
+﻿@{
+    Layout = "~/views/shared/_Layout.cshtml";
+
+    ViewData["PageTitle"] = "4 Ways to Make Art Part of Your Decor";
+    ViewData["PageDesc"] = "Techniques and ideas for incorporating art in your decor for a cohesive interior";
+    ViewData["Title"] = "4 Ways to Make Art Part of Your Decor";
+    ViewData["Type"] = "article";
+
+    var images = new List<string>();
+    images.Add("images/content/art-in-decor/yellow-art-match-pillows.jpg");
+    images.Add("images/content/art-in-decor/art-match-wall-color.jpg");
+    images.Add("images/content/art-in-decor/art-color-match-rug.jpg");
+    images.Add("images/content/art-in-decor/bathroom-art-match-wall-color.jpg");
+    ViewData["Images"] = images;
+
+}
+@*@section tags
+    {
+        <meta property="article:section" content="Lifestyle">
+        <meta property="article:tag" content="Art">
+        <meta property="article:tag" content="Interior Design">
+        <meta property="article:tag" content="Home Decor">
+    }*@
+<style>
+    .navbar-fixed {
+        display: none;
+    }
+
+    .title-container {
+        background-image: url('../images/content/art-in-decor/art-in-decor-header.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+        overflow: hidden;
+        background-color: #808080;
+        height: 20vmax;
+    }
+
+        .title-container h1 {
+            color: #f5f5f5;
+            font-size: 3.3vmax;
+            line-height: 4.2vmax;
+            padding: 30px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+
+    blockquote {
+        margin: 20px 0;
+        text-transform: uppercase;
+    }
+
+    .image-row {
+        background-color: #f5f5f5;
+        padding-top: 6px;
+    }
+
+    .sponsors-row {
+        padding-bottom: 10px;
+    }
+
+        .sponsors-row img {
+            margin: 0 auto;
+        }
+
+    @@media only screen and (max-width : 992px) {
+        .navbar-fixed {
+            display: block;
+        }
+
+        .title {
+            display: none;
+        }
+    }
+</style>
+@Html.Partial("_SearchHeader")
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="mainEntityOfPage" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+    <div class="container-fluid p-l-3 p-r-3">
+        <div class="row">
+            <div class="col-xs-12 title-container flex-center text-xs-center">
+                <h1>4 Ways to Make Art<br />Part of Your Decor</h1>
+            </div>
+        </div>
+    </div>
+    <section class="row m-t-3">
+        <div class="container p-l-3 p-r-3">
+            <div>
+                <div class="col-xs-12 p-b-3">
+                    <p>Art makes your room come alive.  When your art brings you joy it will brighten the room every time you step into it.  We want you to think of your space like a visual symphony.  If your art and decor work together in counterpoint, you can fine tune the tone.  Whether you are looking for bold or complex, muted or layered, your artwork and furnishings can work independently but in harmony for the look you want.</p>
+
+                    <p>Creating this balance can mystify most people looking to decorate their own space.  If you aren't going to galleries on the weekend you are probably browsing images online hoping the right art will pop out at you.  Do you simply hang that piece you fell in love with even though it doesn't fit the room just right? Or do you try to find something that harmonizes with the décor in some way. The answer is different for everyone, but we're going to help you make whatever method you use look good.</p>
+
+                    <p>One note regarding terminology. There are those who say prints, giclees, or other reproductions are not 'art' but merely decoration. There is definitely more inherent value in original artwork, and we don't condone the exploitation of an artists' hard work. However, high quality original artwork is cost prohibitive for many, and modern technology is making it easier for artists to reap at least some financial benefit by using profit sharing printing platforms. For simplicity, we will be using the term “art” to mean either original or reproduced works and leave that debate to others.</p>
+
+                    <p>With that out of the way, on with our list of ways to make your art work with your decor.</p>
+
+                </div>
+                <div class="col-xs-12">
+                    <header class="m-b-2">
+                        <h2>1.  Don't match the art to anything. </h2>
+                    </header>
+                    <p>Yes, this seems to contradict our title, but bear with us.</p>
+
+                    <p>Art is diverse and personal. Therefore, many designers and decorators advise to find something that speaks to you. Be it the style, colors or topic of a piece, if you love it and can afford it, go for it.</p>
+
+                    <p>"But", you say, "the piece does not go with my room at all." Well, there are some options to make such a piece feel like it belongs in the room. For example, look for a frame and/or matting that matches another piece in the décor. Just be careful that it does not clash with the colors in the artwork.</p>
+
+                    <p>Or don't try to match anything at all. If you love the art, <em>you</em> make it part of the room.</p>
+                </div>
+            </div>
+        </div>
+        <figure class="m-t-2 m-b-3">
+            <div class="image-row p-t-1 p-b-1">
+                <div class="text-xs-center">
+                    <span style="font-style: italic;">click/tap images to view larger</span>
+                </div>
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/art-frames-work-with-decor.jpg" class="materialboxed img-fluid" alt="Art frames tie in with the decor" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/art-frames-work-with-decor.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Note the unique frame behind the couch. Another frame matches a furniture piece.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://thedesignfiles.net/2015/03/penny-lane/" target="_blank">The Design Files</a>
+                            </small>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/art-match-decor-lamp.jpg" class="img-fluid" alt="Art frames match decor" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/art-match-decor-lamp.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                See how the frames 'go' with different pieces of furniture.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.apartmenttherapy.com/annes-lavish-artdeco-renovation-at-the-el-dorado-house-tour-192192" target="_blank">Apartment Therapy</a>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/match-pillows-to-frames.jpg" class="img-fluid" alt="Art frame matches pillows" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/match-pillows-to-frames.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Great tie-in of the gilded (gold) frames with the pillows.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.desiretoinspire.net/blog/2016/2/15/dalla-polvere.html" target="_blank">Desire to Inspire</a>
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </figure>
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <blockquote class="text-fluid green-text text-darken-3">"If you love the art, <span style="text-decoration: underline;">you</span> make it part of the room."</blockquote>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>We pause with the list here as the rest of these options require matching color in the artwork with the décor. Historically, decorators would wander through their favorite haunts for art lugging along paint chips, fabric swatches, maybe even a curtain or lamp shade. Then they would dutifully compare said items with the artwork while browsing. We humbly submit the <a href="/">color search option at Art By Hue</a> as a much easier alternative. More on that later. Now back to the list.</p>
+                </div>
+            </div>
+            <br/>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-client="ca-pub-2565257726091314"
+                 data-ad-slot="9309116993"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </section>
+    <section class="row m-t-3">
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <header>
+                        <h3>2. Find art that contains an accent color</h3>
+                    </header>
+                    <p>Along with the first option, this is what we often see in all the magazines and awesome Instagram accounts we love to gawk over. The ideas is simple, tie in accent colors from the room with the art. In practice this can be a challenge, but the results are often spectacular.</p>
+
+                </div>
+            </div>
+        </div>
+        <figure class="m-t-2 m-b-3">
+            <div class="image-row p-t-1 p-b-1">
+                <div class="text-xs-center">
+                    <span style="font-style: italic;">click/tap images to view larger</span>
+                </div>
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/art-color-match-rug.jpg" class="img-fluid" alt="Red in art and rug match" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/art-color-match-rug.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                The red pops in both the artwork and rug here.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.ardesiadesign.co.uk/id17-biddulph/4586841352" target="_blank">Artesia Design</a>
+                            </small>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/chair-color-match-art.png" class="img-fluid" alt="Color in art matching furniture" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/art-match-decor-lamp.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Great use of color here with the pink and green.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.huntedinterior.com/2016/03/live-color-fully-pink-green.html#.Vv2KLfmECHs" target="_blank">Hunted Interior</a>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/yellow-art-match-pillows.jpg" class="img-fluid" alt="Artwork bright color matches pillows" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/yellow-art-match-pillows.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Another splash of bright color in the artwork and the pillows.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://design-milk.com/holiday-apartment-barcelona/" target="_blank">Design Milk</a>
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </figure>
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>The matching color could be in a number of items, or even just one piece in the room. The item(s) could be close to the painting or not, as long as they are positioned such that both are seen simultaneously by the viewer. The color must be a very close match for the eye to pick up on the cohesion between the art and the décor.</p>
+
+                    <p>What if you are trying to match something large, like a rug or chair fabric that you don't have a swatch of? You might be tempted to take a picture with your phone and use that to compare to the art when you find it. Don't do it! The colors from the phone camera and screen are not to be trusted. A better alternative is to visit your local paint supplier, and pick up all the paint chips you think are close to the color you want to match. Usually you can find a shade very close to the desired chair or rug or whatever. Now you have an accurate color sample to compare when you're at the gallery or store looking at art.</p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <blockquote class="text-fluid green-text text-darken-3">"The color must be a very close match for the eye to pick up on the cohesion between the art and the décor."</blockquote>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <p>We digress once more to mention this is why we have preset paint colors to search with on <a href="/">Art By Hue</a>. This gives the best potential that the art you order online will indeed match the color you are looking for. The preset colors come straight from the paint manufacturers, so they are the closest representation we can get to the actual color.</p>
+                </div>
+            </div>
+            <br />
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-client="ca-pub-2565257726091314"
+                 data-ad-slot="9309116993"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </section>
+    <section class="row m-t-3">
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <header>
+                        <h3>3. Find art that has a little of the wall color</h3>
+                    </header>
+                    <p>When using a non-neutral paint color, such as on an accent wall, finding art containing a little of the same color can be a great look.</p>
+                </div>
+            </div>
+        </div>
+        <figure class="m-t-2 m-b-3">
+            <div class="image-row p-t-1 p-b-1">
+                <div class="text-xs-center">
+                    <span style="font-style: italic;">click/tap images to view larger</span>
+                </div>
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/accent-wall-color-art-match.jpg" class="img-fluid" alt="Some of the painting color matches the wall color" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/accent-wall-color-art-match.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                The brown from the wall is not dominant in the painting, but it is there.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.homedit.com/accent-wall-ideas/" target="_blank">Home Edit</a>
+                            </small>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/wall-art-match-color.jpeg" class="img-fluid" alt="Wall color exists in the artwork" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/wall-art-match-color.jpeg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Very nice deep blue accent wall where the art ties everything together.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.inmyinterior.com/bedroom-accent-walls-ideas/" target="_blank">In My Interior</a>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/bathroom-art-match-wall-color.jpg" class="img-fluid" alt="Matching of multiple colors in art to wall and bath tub" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/yellow-art-match-pillows.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Great match here to the wall and bath tub
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.topdreamer.com/pastel-home-decor-ideas-for-the-spring-time/" target="_blank">Top Dreamer</a>
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </figure>
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>The challenge here is accurately identifying the color. Our eyes are naturally drawn to the dominant colors in a piece, so a conscious effort is needed to identify that an accent color is indeed part of an artwork. Unless, of course, you use Art By Hue.</p>
+                </div>
+            </div>
+            <br />
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-format="fluid"
+                 data-ad-layout="in-article"
+                 data-ad-client="ca-pub-2565257726091314"
+                 data-ad-slot="9309116993"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </section>
+    <section class="row m-t-3">
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <header>
+                        <h3>4. Find art where the wall color is dominant.</h3>
+                    </header>
+                    <p>Wait! Don't click/tap away just yet. At first thought this does not seem like it would be appealing, but take a look at these examples:</p>
+                </div>
+            </div>
+        </div>
+        <figure class="m-t-2 m-b-3">
+            <div class="image-row p-t-1 p-b-1">
+                <div class="text-xs-center">
+                    <span style="font-style: italic;">click/tap images to view larger</span>
+                </div>
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/blue-wall-match-art.jpg" class="img-fluid" alt="Large matting makes matching blue color work" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/blue-wall-match-art.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                The blue in the prints match the wall. The big mats make it work.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.homedit.com/accent-wall-ideas/" target="_blank">Home Edit</a>
+                            </small>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/framed-maps-match-wall-color.jpg" class="img-fluid" alt="Proper framing makes monochome colors work ok" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/framed-maps-match-wall-color.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                The frames give enough distinction to the artwork that we are not bored by the same colors.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://betterdecoratingbible.com/2015/10/01/easy-ideas-to-fill-up-and-decorate-blank-walls-in-your-home-designer-approved/" target="_blank">Better Decorating Bible</a>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="view overlay hm-white-slight">
+                            <img src="~/images/content/art-in-decor/art-match-wall-color.jpg" class="img-fluid" alt="Negative space makes matching art to the wall work well" />
+                            <a data-toggle="modal" data-target="#myModal" data-image="/images/content/art-in-decor/art-match-wall-color.jpg">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Dramatic art use with black negative space around the blue that matches the wall.
+                            </p>
+                            <hr />
+                            <small class="card-text text-muted">
+                                Image via <a href="http://www.homedit.com/living-room-decorating-ideas/">Home Edit</a>
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </figure>
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>Nice, right? The trick is to have plenty of 'negative space' around or even within the artwork.  This can be done with large plain mats to separate the art from the wall.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <blockquote class="text-fluid green-text text-darken-3">"Have plenty of 'negative space' around or even within the artwork"</blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row m-t-3">
+        <div class="container p-l-3 p-r-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <header>
+                        <h3>Conclusion</h3>
+                    </header>
+                    <p>The opportunities to have art that compliments your decor are seemingly limitless. The right artwork can add life to the most drab of rooms when properly chosen and utilized. These methods will truely make the art part of the room, not just filling wall space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="m-t-3">
+        <div class="row image-row sponsors-row">
+            <div class="text-xs-center">
+                <span style="font-style: italic;">from our sponsors</span>
+            </div>
+            <div class="col-xs-12 col-md-4 text-xs-center">
+                <a target="_blank" href="http://shareasale.com/r.cfm?b=592391&amp;u=1212845&amp;m=21395&amp;urllink=&amp;afftrack="><img src="http://static.shareasale.com/image/21395/Poster_300x250.jpg" border="0" class="img-fluid" alt="Red Bubble" /></a>
+            </div>
+            <div class="col-xs-12 col-md-4 text-xs-center">
+                <a target="_blank" href="http://shareasale.com/r.cfm?b=540777&amp;u=1212845&amp;m=10782&amp;urllink=&amp;afftrack="><img src="http://static.shareasale.com/image/10782/350x250_1_00.png" border="0" class="img-fluid" alt="Imagekind - Fine Art and Photography for Every Wall" /></a>
+            </div>
+            <div class="col-xs-12 col-md-4 text-xs-center">
+                <a target="_blank" href="http://shareasale.com/r.cfm?b=597113&amp;u=1212845&amp;m=37430&amp;urllink=&amp;afftrack="><img src="http://static.shareasale.com/image/37430/Seating_300x250.gif" border="0" class="img-fluid" alt="One Kings Lane" /></a>
+            </div>
+        </div>
+    </section>
+    <div class="p-a-3">
+        <a data-sumome-discover-grid></a>
+    </div>
+</article>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <img id="modal-image" class="img-fluid m-x-auto" src="" />
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $('#myModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var image = button.data('image');
+            var modal = $(this);
+            modal.find('#modal-image').attr('src', image);
+        })
+
+        $(function () {
+            $('#menu li').removeClass('active');
+            $('#useart').addClass('active');
+        });
+    </script>
+
+}

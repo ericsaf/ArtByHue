@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "wwwroot/lib/material-bootstrap/css/mdb.css",
+    "inputFile": "wwwroot/lib/material-bootstrap/sass/mdb.scss"
+  },
+  {
+    "outputFile": "wwwroot/js/site.es5.js",
+    "inputFile": "wwwroot/js/site.js"
+  }
+]

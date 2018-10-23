@@ -1,0 +1,354 @@
+@model List<WebApp.Models.ProductSearchResult>
+
+@{
+    var isArtistPage = false;
+
+    if (ViewBag.IsArtist != null && (bool)ViewBag.IsArtist)
+    {
+        isArtistPage = true;
+
+    }
+
+    var isInspirationPage = false;
+    if (ViewBag.IsInspiration != null && (bool)ViewBag.IsInspiration)
+    {
+        isInspirationPage = true;
+
+    }
+
+    var isCurator = ViewBag.IsCurator != null && ViewBag.IsCurator == "1" ? true : false;
+
+    ViewBag.IsCurator = isCurator;
+}
+<style>
+    #top-section {
+        padding: 20px 5px 10px 5px;
+    }
+
+    .card {
+        min-height: 440px;
+    }
+
+    a:not(.btn):hover {
+        color: #007e00;
+    }
+
+    a:focus {
+        outline: none;
+    }
+
+    .product-card .label {
+        left: unset;
+        right: 0;
+        background-color: rgba(90, 149, 245, 0.7);
+    }
+
+    .view {
+        height: 200px;
+    }
+
+        .view img {
+            margin: 0 auto;
+            max-height: 100%;
+        }
+
+    .card-block {
+        min-height: 145px;
+        text-align: center;
+    }
+
+    .card-title {
+        display: block; /* or inline-block */
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 2.4em;
+        line-height: 1.2em;
+    }
+
+    .product-card .cta p {
+        color: #1C2331;
+    }
+
+    .card-text .fa {
+        font-size: 1.2rem;
+        color: #006400;
+    }
+
+    .indie-artist {
+        color: #006400;
+        margin-left: 3px;
+    }
+
+    .popover {
+        max-width: 160px;
+    }
+
+    .store-logo {
+        max-height: 30px;
+        margin-top: 10px;
+    }
+
+    .modal-header {
+        border-bottom: none;
+    }
+
+    .modal-title {
+        margin: 0 12px;
+    }
+
+    .ql-modal .price p .price-after, .product-panel .price p .price-after {
+        font-size: 1.5rem;
+    }
+
+
+    .main-img-container {
+        min-height: 300px;
+    }
+
+    .page-link {
+        color: #006400;
+    }
+
+    .page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
+        background-color: #006400;
+        border-color: #006400;
+    }
+
+    .curated {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: #006400;
+        font-size: large;
+        z-index: 900;
+    }
+
+    .amzn-native-container {
+        margin: 0 auto;
+    }
+</style>
+<!-- Modal -->
+<div class="modal fade ql-modal" id="ql-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @*<h4 class="modal-title animated" id="myModalLabel"></h4>*@
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <!--Grid-->
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <!--First column-->
+                        <div class="col-xs-12 col-md-6 flex-center m-b-2 main-img-container">
+                            <img id="main-img" class="img-fluid animated" src="" />
+                        </div>
+                        <!--/.First column-->
+                        <!--Second column-->
+                        <div class="col-md-6 text-xs-center text-md-left">
+                            <!--Title-->
+                            <h3 id="product-title" class="text-uppercase"></h3>
+                            <p id="artist-name">By <a id="artist-link"></a><i class="fa fa-child indie-artist" aria-hidden="true"></i></p>
+                            <hr>
+                            <!--Price-->
+                            <div class="price text-xs-center text-md-left">
+                                <p><span class="price-after"></span></p><br />
+                                <p><a id="buy-now" href="#" class="btn btn-lg btn-primary" target="_blank">Price Options</a> at <img id="modal-store-logo" /></p>
+                                <br /><p><small class="text-muted animated fadeIn"><sup>*</sup>Options including size, material, framing etc. affect the price</small></p>
+                            </div>
+                            <hr>
+                            <p id="description" class="animated fadeIn"></p>
+                            <br>
+                            <div id="keywords" class="animated fadeIn">
+                                <h4>Keywords</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 text-xs-center">
+                                    <a id="detail-link" href="" class="btn btn-primary-outline">See Matching Paint Colors</a>
+                                </div>
+                                <div class="col-xs-12    text-xs-center m-t-1">
+                                    <h5 style="display: inline;">Share:</h5>
+                                    <a type="button" class="btn btn-fb" data-link=""><i class="fa fa-facebook"></i></a>
+                                    <a type="button" data-pin-do="buttonPin" data-pin-custom="true" class="btn btn-pin" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-pinterest"></i></a>
+                                    <a type="button" href="#" class="btn btn-tw"><i class="fa fa-twitter"></i></a>
+                                    <a type="button" class="btn btn-gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.Second column-->
+                </div>
+            </div>
+            <!--/.Grid-->
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+    <!--/.Content-->
+</div>
+
+<!-- /Modal -->
+<div class="row">
+    @if (isInspirationPage)
+    {
+        <div class="col-xs-12 text-xs-center m-b-1">
+            <h5>A FEW SIMILAR ART PRINTS</h5>
+        </div>
+    }
+    else
+    {
+        <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="card product-card">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout="image-top"
+                     data-ad-layout-key="-8i+1w-dq+e9+ft"
+                     data-ad-client="ca-pub-2565257726091314"
+                     data-ad-slot="4750376149"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    }
+    @foreach (var result in Model)
+    {
+        <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="card product-card">
+                @if (result.CuratorPick)
+                {
+                    <a class="curated" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" title="Curated" data-content="One of our favorites! We carefully select items with great style for use in decor and list them first in our results." data-original-title="Curated">
+                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                    </a>
+
+                }
+                <!--Card image-->
+                <div class="view overlay hm-white-slight flex-center">
+                    <img src="@result.SmallImageURL" class="img-fluid" alt="">
+                    <a asp-controller="ArtPrints"
+                       asp-action="Index"
+                       asp-route-id="@result.ProductID"
+                       asp-route-name="@result.ProductSlug"
+                       role="button"
+                       data-prodid="@result.ProductID"
+                       data-toggle="modal"
+                       data-target="#ql-modal">
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <!--Card content-->
+                <div class="card-block">
+                    <!--Title-->
+                    <a asp-controller="ArtPrints"
+                       asp-action="Index"
+                       asp-route-id="@result.ProductID"
+                       asp-route-name="@result.ProductSlug"
+                       role="button"
+                       data-prodid="@result.ProductID"
+                       data-largeimg="@result"
+                       data-toggle="modal"
+                       data-target="#ql-modal"><h4 class="card-title">@result.Title</h4></a>
+
+                    <!--Text-->
+                    @if (result.ArtistID.HasValue && !String.IsNullOrEmpty(result.Artist) && !isArtistPage)
+                    {
+                        <div class="card-text">
+                            <a asp-controller="ArtPrints" asp-action="Artist" asp-route-id="@result.ArtistID" asp-route-name="@result.ArtistNameSlug" asp-route-page="1">By @result.Artist</a>
+                            @if (result.Supplier.Equals("Red Bubble") || result.Supplier.Equals("Imagekind") || result.Supplier.Equals("Minted") || result.Supplier.Equals("SaatchiArt"))
+                            {
+                                <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" title="Independent Artist" data-content="Feel good knowing you helped this artist out when you buy.">
+                                    <i class="fa fa-child" aria-hidden="true"></i>
+                                </a>
+                            }
+                        </div>
+                    }
+
+                </div>
+                <!--/.Card content-->
+                <!--Call to action-->
+                <div class="cta">
+                    <p>
+                        base price <b>$@result.Price</b> at<br />
+                        <img class="store-logo" src="@result.Logo" />
+                    </p>
+
+
+                    <a asp-controller="ArtPrints"
+                       asp-action="Index"
+                       asp-route-id="@result.ProductID"
+                       asp-route-name="@result.ProductSlug"
+                       class="btn btn-primary-outline btn-sm waves-effect prod-detail"
+                       data-prodid="@result.ProductID">Matching Paint Colors</a>
+                    <a href="@result.AffiliateURL" target="_blank" class="btn btn-primary waves-effect">Price Options</a>
+                </div>
+                @if (isCurator)
+                {
+                    <button class="curated-btn btn-flat" style="margin: 5px; padding: 5px;" data-productid="@result.ProductID" data-iscurated="@result.CuratorPick">
+                        @if (result.CuratorPick)
+                        {
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        }
+                    </button>
+                }
+            </div>
+        </div>
+    }
+
+    @if (!isInspirationPage)
+    {
+        <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="card product-card">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout="image-top"
+                     data-ad-layout-key="-8i+1w-dq+e9+ft"
+                     data-ad-client="ca-pub-2565257726091314"
+                     data-ad-slot="4750376149"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    }
+
+    @if (!isInspirationPage)
+    {
+        <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="card product-card p-a-2">
+                <script type="text/javascript">
+                    amzn_assoc_placement = "adunit0";
+                    amzn_assoc_search_bar = "false";
+                    amzn_assoc_tracking_id = "artbyhue-20";
+                    amzn_assoc_ad_mode = "search";
+                    amzn_assoc_ad_type = "smart";
+                    amzn_assoc_marketplace = "amazon";
+                    amzn_assoc_region = "US";
+                    amzn_assoc_title = "Shop Home Decor on Amazon";
+                    amzn_assoc_default_search_phrase = "home decor";
+                    amzn_assoc_default_category = "All";
+                    amzn_assoc_linkid = "572532b1faa7892b6ec2869feb8f1964";
+                </script>
+                <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+            </div>
+        </div>
+    }
+</div>

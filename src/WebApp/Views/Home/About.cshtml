@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/views/shared/_Layout.cshtml";
+
+    ViewData["PageTitle"] = "About Art By Hue: What we do and how we do it";
+    ViewData["PageDesc"] = "Helping you find artwork you love AND matches your color palette.";
+    ViewData["Title"] = "About";
+
+}
+<style>
+    .about-title {
+        background-image: url('../images/abouttitle.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+        overflow: hidden;
+        background-color: #808080;
+        height: 20vmax;
+    }
+
+    .about-title h1 {
+        color: #f5f5f5;
+        font-weight: 300;
+        font-size: 3.3vmax;
+        line-height: 4.2vmax;
+        padding: 30px;
+        text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    }
+</style>
+@Html.Partial("_SearchHeader")
+<div class="row p-a-3">
+    <div class="col-xs-12 flex-center about-title ">
+        <h1>Discover stunning art prints that match your decor.</h1>
+    </div>
+</div>
+<div class="row p-a-3">
+    <div class="col-xs-12">
+        <h3>A Powerful Search Method For Finding Art Prints</h3>
+        <p>
+            While there are sites that allow searching art by color, they are very limited to several preset colors only.
+            The results are limited as they understandably only include items from their own site.
+        </p>
+        <p>
+            Art By Hue has partnered with a number of sites that offer numerous art prints, usually with many options regarding size, media and framing.
+            We utilize proprietary software to analyze the colors in each available piece and then index and store the data for quick retrieval.
+        </p>
+        <blockquote class="blockquote bq-primary m-t-3">
+            <p class="bq-title">
+                <b>What you get is the ability to search for art prints by any color across multiple online suppliers.</b>
+            </p>
+        </blockquote>
+    </div>
+</div>
+
+<div class="row p-a-3">
+    <div class="col-xs-12">
+        <h3>A New Level of Online Color Accuracy</h3>
+        <p>
+            A severe limitation of shopping by color online is how digital screens render color.
+            The colors of a delivered product may be significantly different than how it appears on screen.
+        </p>
+        <p>
+            To mitigate this risk, we have preset colors available from common paint manufacturers.
+            These are the screen renderings from the manufacturer, so they are the closest we can come to the actual paint color.
+            When you search by one of these colors, you have a much better chance of the delivered product containing the expected color.
+        </p>
+    </div>
+</div>
+<div class="row m-b-3">
+    <div class="col-xs-12 text-xs-center">
+        <img src="~/images/aboutpaint.jpg" class="img-fluid m-x-auto" />
+    </div>
+</div>
+<div class="row p-a-3">
+    <div class="col-xs-12">
+        <h3>Who We Are</h3>
+        <p>
+            Art By Hue is the brain-child of software developer Eric Safstrom.
+            His family enjoys art, especially his daughter Samantha, so an experiment was started to see how modern technology could be used in art discovery.
+            After much tinkering, the results were such that it became a family business and was dubbed Art By Hue.
+        </p>
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $('#menu li').removeClass('active');
+            $('#about').addClass('active');
+            $('.search-btn').hide();
+        });
+    </script>
+
+}

@@ -1,0 +1,108 @@
+﻿@model WebApp.ViewModels.SearchViewModel
+<style>
+    .selections {
+        /*background-color: #fff;*/
+        /*padding: 10px 0 24px 0;*/
+    }
+
+    #search-form .fa {
+        color: #646464 !important;
+    }
+
+    .paint-logos img {
+        display: inline-block;
+        margin-right: 8px;
+        width: 20%;
+        max-width: 75px;
+    }
+
+    #colorName {
+        margin-top: 30px !important;
+    }
+</style>
+@*<cache expires-sliding="@TimeSpan.FromMinutes(30)">*@
+    <div class="collapse text-xs-left p-b-1" id="collapseSearch">
+        <form action="/search" method="get" id="search-form">
+
+            <div class="row selections text-xs-center">
+                <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+                    <h5 id="searchOptionsHeading" style="padding-top: 12px; color: #646464">Search Options</h5>
+                </div>
+                <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+                    <ul class="nav nav-tabs tabs-3" role="tablist" style="background-color: #fff;">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Custom Color</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Paint Color</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">Terms Only</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content row">
+                <div class="tab-pane fade in active col-xs-12 text-xs-left" id="panel1" role="tabpanel">
+                    <div style="width: 360px; margin: 20px auto 0;">
+                        <div id="pickerDiv" class="pull-left" style="width: 200px;">
+
+                        </div>
+                        <div class="input-field pull-left" style="padding-left: 10px; padding-top: 15px; width: 40%;">
+                            <div class="">
+                                <input id="colorNumber" class="hexColor" type="text" @(!String.IsNullOrEmpty(Model.SearchColor) ? "value=" + Model.SearchColor : "")>
+                                <br /><span>Hex </span><br />
+                            </div>
+                            <div class="">
+                                <div class="rgbInput">
+                                    <input id="colorR" type="number" min="0" max="255"><br />
+                                    <div class="rgbLabel">R</div>
+                                </div>
+                                <div class="rgbInput">
+                                    <input id="colorG" type="number" min="0" max="255"><br />
+                                    <div class="rgbLabel">G</div>
+                                </div>
+                                <div class="rgbInput">
+                                    <input id="colorB" type="number" min="0" max="255"><br />
+                                    <div class="rgbLabel">B</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade in col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-4 col-xl-offset-4 text-xs-center" id="panel2" role="tabpanel">
+                    <div class="first-field" style="height: 220px;">
+                        <input name="color" id="color" type="hidden" value="@(!String.IsNullOrEmpty(Model.SearchColor) ? Model.SearchColor : "")" />
+                        <br /><p>Preset colors availble for:</p>
+                        <div class="row">
+                            <div class="col-xs-12 paint-logos text-xs-center">
+
+                                <img src="~/images/behr-logo.png" alt="Behr Paint Logo" />
+                                <img src="~/images/benjamin-moore-logo.png" alt="Benjamin Moore Logo" />
+                                <img src="~/images/sherwin-williams-logo.jpg" alt="Sherwin Williams Logo" />
+                                <img src="~/images/valspar-logo.png" alt="Valspar Logo" />
+                            </div>
+                        </div>
+                        <input type="text" id="colorName" name="colorName" placeholder="enter a paint color number or name here" />
+                    </div>
+                </div>
+                <div class="tab-pane fade in col-xs-12" id="panel3" role="tabpanel">
+                    <div class="text-xs-center" style="height: 220px; padding-top: 60px;">
+                        <h5>Search by style, subject and/or artist</h5><br />
+                        <p>For Example:<br /> 'abstract'<br /> 'flower pastel'<br /> 'picasso woman'</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="p-t-1 p-b-1 col-xs-10 col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-4 col-xl-offset-4 text-xs-center">
+                    <input type="text" name="keywords" id="keywords-input" placeholder="add search terms here" />
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-xs-center submit-btn">
+                    <button type="button" class="btn btn-default-outline waves-effect" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">Cancel</button>
+                    <button type="submit" class="btn btn-default-outline waves-effect"><i class="fa fa-search left"></i>Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+@*</cache>*@

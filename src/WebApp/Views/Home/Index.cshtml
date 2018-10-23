@@ -1,0 +1,188 @@
+
+@{
+    Layout = "_Layout-Landing";
+    ViewData["Title"] = "Art By Hue - Fine Art Print Search For Any Decor";
+    ViewData["PageDesc"] = "Discover beautiful art prints from a number of online sources. Search by any color and keywords to find the perfect artwork for your decor. We &#9829; independant artists!";
+    var images = new List<string>();
+    images.Add("images/artbyhuesamples.jpg");
+    images.Add("images/art-by-hue-homepage-bg.jpg");
+    images.Add("images/paint-matching.jpg");
+    ViewData["Images"] = images;
+
+    var thisUrl = String.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path);
+    var thisImageURL = "";
+
+    var twitterUrl = String.Format("https://twitter.com/intent/tweet?text={0}&url={1}",
+                Html.UrlEncoder.Encode("Art By Hue - Find the perfect Art Print"), "http://www.artbyhue.com");
+
+    var pinDesc = Html.UrlEncoder.Encode("Art By Hue - Find the perfect Art Print");
+    var pinURL = String.Format("https://www.pinterest.com/pin/create/button/?url={0}&media={1}&description={2}", "http://www.artbyhue.com", thisImageURL, pinDesc);
+
+    var gplusUrl = String.Format("https://plus.google.com/share?url={0}", "http://www.artbyhue.com");
+}
+<cache expires-sliding="@TimeSpan.FromMinutes(30)">
+    <div class="row view hm-white-strong hero">
+        <div class="mask flex-center">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-xs-center text-accent-2">
+                    <h1>Find the Perfect Print</h1>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-xs-center smooth-scroll">
+                        <a type="button" href="#search-container" class="btn btn-lg btn-warning text-uppercase hoverable" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">Search Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search-container" class="ease-background" style="background-color: #000064;">
+        @Html.Partial("_SearchForm", new WebApp.ViewModels.SearchViewModel { SearchColor = "000064" })
+    </div>
+    <div class="row m-t-3 m-b-3 p-t-3 p-b-3">
+        <div class="col-xs-12 m-b-2 text-xs-center">
+            <h2 class="home-heading">The Art Print Search Engine</h2>
+            <p class="home-par">Over 300,000 pieces from a number of great suppliers</p>
+        </div>
+        <div class="col-xs-12 text-xs-center brands m-t-2">
+            <img src="~/images/art-dot-com-logo.gif" class="img-fluid" />
+            <img src="~/images/imagekind-logo.png" class="img-fluid" />
+            <img src="~/images/minted-logo.png" class="img-fluid" />
+            <img src="~/images/red-bubble-logo.jpeg" class="img-fluid" />
+            <img src="~/images/saatchiart-logo.jpg" class="img-fluid" />
+            <img src="~/images/wayfair-logo.png" class="img-fluid" />
+        </div>
+    </div>
+    <div id="home-color-selector" class="row m-t-3 m-b-3 p-t-1 p-b-3 ease-background">
+        <div class="col-xs-12 m-t-1 p-a-3 text-xs-center">
+            <h2 class="home-heading">Search by any color</h2>
+            <p class="home-par">Not just a vague match to 'teal' or 'orange'</p>
+        </div>
+        <div class="col-xs-12 text-xs-center p-b-2">
+            <h3>Try It</h3>
+            <form action="/search" method="get" id="search-form-home">
+                <input name="color" id="ColorHome" value="006400" type="hidden" />
+                <input type="hidden" id="colorNameHome" name="colorName" />
+                <div id="pickerDivHome" class="col-xs-12" style="text-align: left; margin: 0 auto">
+
+                </div>
+                <button type="submit" class="btn btn-default-outline"><i class="fa fa-search left"></i>Go!</button>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row m-b-3">
+        <div class="col-xs-12 m-t-1 p-a-3 text-xs-center">
+            <h2 class="home-heading">Match using color swatches from many paint manufacturers</h2>
+            <p class="home-par m-t-1 p-l-3 p-r-3">The colors you see on a digital screen often do not match the analog world. Using paint colors ensures the closest match possible.</p>
+        </div>
+        <div class="col-xs-12">
+            <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+                <!--Indicators-->
+                <ol class="carousel-indicators">
+                    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                    <li data-target="#multi-item-example" data-slide-to="1"></li>
+                    <li data-target="#multi-item-example" data-slide-to="2"></li>
+                </ol>
+                <!--/.Indicators-->
+                <div class="carousel-inner" role="listbox">
+
+                    <!--First slide-->
+                    <div class="carousel-item active">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <a href="/color/9EA9A2/1579-greyhound-b-moore/1"><img class="img-fluid" src="~/images/Artwork-Matching-GREYHOUND.jpg" alt="Examples of art matching Greyhound" /></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm-down">
+                            <div class="card">
+                                <a href="/color/C6C9D5/1423-angels-wings-b-moore/1"><img class="img-fluid" src="~/images/Art-Matching-color-Angel's-Wings.jpg" alt="Examples of art matching Angel's Wings'" /></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 hidden-sm-down">
+                            <div class="card">
+                                <a href="/color/7C5244/2011-6-cowboy-suede-valspar/1"><img class="img-fluid" src="~/images/CowboySuedeArtworks.jpg" alt="Examples of art matching Cowboy Suede" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Second slide-->
+                    <div class="carousel-item">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <a href="/color/973E41/1011-2-fabulous-red-valspar/1"><img class="img-fluid" src="~/images/Fabulous-Red.jpg" alt="Examples of art matching Fabulous Red" /></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm-down">
+                            <div class="card">
+                                <a href="/color/283849/sw9178-in-the-navy-s-williams/1"><img class="img-fluid" src="~/images/In-The-Navy-Wall-Art.jpg" alt="Examples of art matching In The Navy'" /></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 hidden-sm-down">
+                            <div class="card">
+                                <a href="/color/EFDDC1/sw6386-napery-s-williams/1"><img class="img-fluid" src="~/images/Napery.jpg" alt="Examples of art matching Napery" /></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Third slide-->
+                    <div class="carousel-item">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <a href="/color/BFD4D4/500e-3-rain-washed-behr/1"><img class="img-fluid" src="~/images/Rain-Wash-Matching-Art.jpg" alt="Examples of art matching Rain Wash" /></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm-down">
+                            <div class="card">
+                                <a href="/color/904C44/2002-5a-la-fonda-antique-red-valspar/1"><img class="img-fluid" src="~/images/Valspar-La-Fonda-Antique-Red.jpg" alt="Examples of art matching Valspar La Fonda Antique Red'" /></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 hidden-sm-down">
+                            <div class="card">
+                                <a href="/color/345284/812-blueberry-hill-b-moore/1"><img class="img-fluid" src="~/images/Blueberry-Hill.jpg" alt="Examples of art matching Blueberry Hill" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row m-t-3 p-a-3" style="background-color: #640000; color: #efefef;">
+        <div class="col-xs-12 m-t-1 p-a-3 text-xs-center term-examples">
+            <h2 class="home-heading">Like <a href="/boats">boats</a>, <a href="/pop-art">pop art</a>, or <a href="/monet">Monet?</a></h2>
+            <p class="home-par">Include keywords to search by subject, style or artist</p>
+            <img src="~/images/term-examples.png" class="img-fluid m-t-3 m-x-auto" />
+        </div>
+    </div>
+    <div class="row m-t-3 m-b-3 p-b-3 p-t-3">
+        <div class="col-xs-12 m-t-1 p-a-3 text-xs-center">
+            <h2 class="home-heading m-b-2">We <i class="fa fa-heart red-text" aria-hidden="true"></i> independent artists!</h2>
+            <i class="fa fa-child indie-artist" aria-hidden="true" style="font-size: 6rem;"></i>
+            <p class="home-par m-t-3">This icon indicates that the artist directly receives a commission when you purchase that item. </p>
+        </div>
+    </div>
+    <div class="row m-t-3 m-b-3 p-b-3 p-t-3" style="background-color: #646464; color: #efefef;">
+        <div class="col-xs-12 m-t-1 p-a-3 text-xs-center">
+            <h2 class="home-heading">Haven't decided on a color scheme yet?</h2>
+            <p class="home-par">Find a print you love and we'll show you the closest paint colors matching that piece! </p>
+            <img src="~/images/paint-matching.jpg" class="img-fluid m-t-3 m-x-auto" />
+        </div>
+    </div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn btn-floating btn-large red">
+            <i class="fa fa-share-alt"></i>
+        </a>
+
+        <ul>
+            <li><a class="btn btn-floating btn-social btn-fb" data-link="@thisUrl"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="btn btn-floating btn-social btn-pin" href="@pinURL" data-pin-do="buttonPin" data-pin-custom="true"><i class="fa fa-pinterest"></i></a></li>
+            <li><a class="btn btn-floating btn-social btn-tw" href="@twitterUrl"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="btn btn-floating btn-social btn-gplus" href="@gplusUrl" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+    </div>
+</cache>

@@ -1,0 +1,22 @@
+@{ 
+    var isCurator = ViewBag.IsCurator != null && ViewBag.IsCurator == "1" ? true : false;
+}
+
+@if (isCurator)
+{
+    <script>
+    $(document).on('click', '.curated-btn', function() {
+        var btn = this;
+        var newCuratedValue = $(btn).attr('data-iscurated') == 'False' ? true : false
+        $.post('/ArtPrints/SetCurated', { productID: $(btn).attr('data-productid'), curated: newCuratedValue })
+            .done(function( data ) {
+                if (newCuratedValue) {
+                    $('i', btn).removeClass('fa-heart-o').addClass('fa-heart');
+                }
+                else {
+                    $('i', btn).removeClass('fa-heart').addClass('fa-heart-o')
+                }
+        });
+    });
+    </script>
+}
